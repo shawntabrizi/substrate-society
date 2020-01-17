@@ -30,7 +30,6 @@ function Main (props) {
         <Form.Field>
           <Input
             onChange={onChange}
-            label='Bid'
             fluid
             placeholder='Bid Amount'
             state='input'
@@ -52,8 +51,8 @@ function Main (props) {
         </Form.Field>
         {status}
       </Form>
-	  <Card.Group>
-        <BidCard users={bids} userType={'Bid'} accountPair={accountPair}/>
+      <Card.Group>
+        <BidCard users={bids} userType={'Bid'} accountPair={accountPair} />
       </Card.Group>
     </Grid.Column>
   );

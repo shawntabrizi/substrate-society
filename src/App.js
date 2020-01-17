@@ -11,6 +11,7 @@ import Events from './Events';
 import Metadata from './Metadata';
 import NodeInfo from './NodeInfo';
 import SocietyBids from './society/Bids';
+import SocietyCandidates from './society/Candidates';
 import SocietyMembers from './society/Members';
 import SocietySuspendedCandidates from './society/SuspendedCandidates';
 import SocietySuspendedMembers from './society/SuspendedMembers';
@@ -58,6 +59,9 @@ function Main () {
           </Grid.Row>
           <Grid.Row stretched>
             <SocietyBids accountPair={accountPair} />
+          </Grid.Row>
+          <Grid.Row stretched>
+            <SocietyCandidates accountPair={accountPair} />
           </Grid.Row>
           <Grid.Row stretched>
             <SocietySuspendedCandidates accountPair={accountPair} />

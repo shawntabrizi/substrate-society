@@ -8,7 +8,10 @@ export default function TxButton ({
   accountPair = null,
   label,
   setStatus,
+  basic = null,
+  primary = null,
   style = null,
+  color = null,
   type = null,
   attrs = null,
   disabled = false
@@ -75,8 +78,10 @@ export default function TxButton ({
 
   return (
     <Button
-      primary
+      primary={primary}
+      basic={basic}
       style={style}
+      color={color}
       type='submit'
       onClick={isQuery() ? query : transaction}
       disabled={disabled || !tx || (!isQuery() && !accountPair)}
