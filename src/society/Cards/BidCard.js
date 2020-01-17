@@ -10,7 +10,7 @@ export default function BidCard (props) {
         description={user.kind.toString()}
         extra={user.value.toString()}
         color={
-          props.accountPair.address === user.who.toString() ? 'green' : ''
+          props.accountPair.address === user.who.toString() ? 'green' : null
         }
       />
     ));

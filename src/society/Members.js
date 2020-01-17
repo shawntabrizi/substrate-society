@@ -6,10 +6,9 @@ import MemberCard from './Cards/MemberCard';
 
 function Main (props) {
   const { api } = useSubstrate();
-  const [members, setMembers] = useState([]);
   const [strikes, setStrikes] = useState([]);
 
-  const { accountPair } = props;
+  const { accountPair, members, setMembers } = props;
 
   useEffect(() => {
     let unsubscribe = null;
@@ -22,7 +21,7 @@ function Main (props) {
       .catch(console.error);
 
     return () => unsubscribe && unsubscribe();
-  }, [api.query.society]);
+  }, [api.query.society, setMembers]);
 
   useEffect(() => {
     let unsubscribe = null;
@@ -34,8 +33,10 @@ function Main (props) {
       })
       .catch(console.error);
 
+    console.log(strikes.toString());
+
     return () => unsubscribe && unsubscribe();
-  }, [api.query.society, members]);
+  }, [api.query.society, members, strikes]);
 
   return (
     <Grid.Column>

@@ -12,6 +12,7 @@ import Metadata from './Metadata';
 import NodeInfo from './NodeInfo';
 import SocietyBids from './society/Bids';
 import SocietyCandidates from './society/Candidates';
+import SocietyDefender from './society/Defender';
 import SocietyMembers from './society/Members';
 import SocietySuspendedCandidates from './society/SuspendedCandidates';
 import SocietySuspendedMembers from './society/SuspendedMembers';
@@ -19,6 +20,7 @@ import SocietySuspendedMembers from './society/SuspendedMembers';
 function Main () {
   const [accountAddress, setAccountAddress] = useState(null);
   const { apiState, keyring, keyringState } = useSubstrate();
+  const [members, setMembers] = useState([]);
   const accountPair =
     accountAddress &&
     keyringState === 'READY' &&
@@ -67,7 +69,14 @@ function Main () {
             <SocietySuspendedCandidates accountPair={accountPair} />
           </Grid.Row>
           <Grid.Row stretched>
-            <SocietyMembers accountPair={accountPair} />
+            <SocietyMembers
+              accountPair={accountPair}
+              members={members}
+              setMembers={setMembers}
+            />
+          </Grid.Row>
+          <Grid.Row stretched>
+            <SocietyDefender accountPair={accountPair} members={members} />
           </Grid.Row>
           <Grid.Row stretched>
             <SocietySuspendedMembers accountPair={accountPair} />
