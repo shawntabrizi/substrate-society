@@ -11,7 +11,16 @@ function Main (props) {
   const { accountPair } = props;
 
   useEffect(() => {
-    api.query.society.candidates(setCandidates);
+    let unsubscribe = null;
+
+    api.query.society
+      .candidates(setCandidates)
+      .then(u => {
+        unsubscribe = u;
+      })
+      .catch(console.error);
+
+    return () => unsubscribe && unsubscribe();
   }, [api.query.society]);
 
   return (

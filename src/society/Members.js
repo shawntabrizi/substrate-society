@@ -12,18 +12,40 @@ function Main (props) {
   const { accountPair } = props;
 
   useEffect(() => {
-    api.query.society.members(setMembers);
+    let unsubscribe = null;
+
+    api.query.society
+      .members(setMembers)
+      .then(u => {
+        unsubscribe = u;
+      })
+      .catch(console.error);
+
+    return () => unsubscribe && unsubscribe();
   }, [api.query.society]);
 
   useEffect(() => {
-    api.query.society.strikes.multi(members, setStrikes);
+    let unsubscribe = null;
+
+    api.query.society.strikes
+      .multi(members, setStrikes)
+      .then(u => {
+        unsubscribe = u;
+      })
+      .catch(console.error);
+
+    return () => unsubscribe && unsubscribe();
   }, [api.query.society, members]);
 
   return (
     <Grid.Column>
       <h2>Members</h2>
       <Card.Group>
-        <MemberCard users={members} strikes={strikes} accountPair={accountPair} />
+        <MemberCard
+          users={members}
+          strikes={strikes}
+          accountPair={accountPair}
+        />
       </Card.Group>
     </Grid.Column>
   );

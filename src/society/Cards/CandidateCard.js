@@ -34,7 +34,7 @@ export default function CandidateCard (props) {
               color='red'
               basic
               attrs={{
-                params: [user, false],
+                params: [user.who, false],
                 tx: api.tx.society.vote
               }}
             />
@@ -46,7 +46,7 @@ export default function CandidateCard (props) {
               color='green'
               basic
               attrs={{
-                params: [user, true],
+                params: [user.who, true],
                 tx: api.tx.society.vote
               }}
             />

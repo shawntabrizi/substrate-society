@@ -15,7 +15,16 @@ function Main (props) {
   const { accountPair } = props;
 
   useEffect(() => {
-    api.query.society.bids(setBids);
+    let unsubscribe = null;
+
+    api.query.society
+      .bids(setBids)
+      .then(u => {
+        unsubscribe = u;
+      })
+      .catch(console.error);
+
+    return () => unsubscribe && unsubscribe();
   }, [api.query.society]);
 
   const onChange = (_, data) =>

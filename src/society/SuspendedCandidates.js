@@ -13,6 +13,8 @@ function Main (props) {
 
   useEffect(() => {
     const addresses = keyring.getPairs().map(account => account.address);
+    let unsubscribe = null;
+
     api.query.society.suspendedCandidates
       .multi(addresses, suspendedStatuses => {
         const suspended = [];
@@ -22,8 +24,14 @@ function Main (props) {
           }
         }
         setSuspendedCandidates(suspended);
-      });
-  }, [api.query.society, status, keyring]);
+      })
+      .then(u => {
+        unsubscribe = u;
+      })
+      .catch(console.error);
+
+    return () => unsubscribe && unsubscribe();
+  }, [api.query.society, keyring]);
 
   return (
     <Grid.Column>
