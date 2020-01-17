@@ -1,0 +1,4 @@
+.ui.card > .content > .header:not(.ui), .ui.cards > .card > .content > .header:not(.ui) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

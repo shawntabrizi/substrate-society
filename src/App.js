@@ -6,16 +6,14 @@ import { SubstrateContextProvider, useSubstrate } from './substrate-lib';
 import { DeveloperConsole } from './substrate-lib/components';
 
 import AccountSelector from './AccountSelector';
-import Balances from './Balances';
 import BlockNumber from './BlockNumber';
-import ChainState from './ChainState';
 import Events from './Events';
-import Extrinsics from './Extrinsics';
 import Metadata from './Metadata';
 import NodeInfo from './NodeInfo';
-import TemplateModule from './TemplateModule';
-import Transfer from './Transfer';
-import Upgrade from './Upgrade';
+import SocietyBids from './society/Bids';
+import SocietyMembers from './society/Members';
+import SocietySuspendedCandidates from './society/SuspendedCandidates';
+import SocietySuspendedMembers from './society/SuspendedMembers';
 
 function Main () {
   const [accountAddress, setAccountAddress] = useState(null);
@@ -56,19 +54,22 @@ function Main () {
             <BlockNumber finalized />
           </Grid.Row>
           <Grid.Row stretched>
-            <Balances />
+            <h1>Society</h1>
           </Grid.Row>
-          <Grid.Row>
-            <Transfer accountPair={accountPair} />
-            <Upgrade accountPair={accountPair} />
+          <Grid.Row stretched>
+            <SocietyBids accountPair={accountPair} />
           </Grid.Row>
-          <Grid.Row>
-            <Extrinsics accountPair={accountPair} />
-            <ChainState />
+          <Grid.Row stretched>
+            <SocietySuspendedCandidates accountPair={accountPair} />
+          </Grid.Row>
+          <Grid.Row stretched>
+            <SocietyMembers accountPair={accountPair} />
+          </Grid.Row>
+          <Grid.Row stretched>
+            <SocietySuspendedMembers accountPair={accountPair} />
+          </Grid.Row>
+          <Grid.Row stretched>
             <Events />
-          </Grid.Row>
-          <Grid.Row>
-            <TemplateModule accountPair={accountPair} />
           </Grid.Row>
         </Grid>
         <DeveloperConsole />
