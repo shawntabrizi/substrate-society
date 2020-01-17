@@ -10,7 +10,10 @@ export default function SuspendedMemberCard (props) {
 
   if (users.length !== 0) {
     return users.map(user => (
-      <Card key={user}>
+      <Card
+        key={user}
+        color={accountPair.address === user.toString() ? 'green' : null}
+      >
         <Card.Content>
           <Image
             floated='right'

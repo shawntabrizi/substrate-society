@@ -1,12 +1,12 @@
 import React from 'react';
-import { Card, Image, Icon, Popup } from 'semantic-ui-react';
+import { Card, Image } from 'semantic-ui-react';
 
 export default function FounderCard (props) {
   const { founder, accountPair } = props;
 
   if (founder) {
     return (
-      <Card>
+      <Card color={accountPair.address === founder.toString() ? 'green' : null}>
         <Card.Content>
           <Image
             floated='right'
@@ -15,13 +15,9 @@ export default function FounderCard (props) {
           />
           <Card.Header>{founder.toString()}</Card.Header>
           <Card.Meta>Founder</Card.Meta>
-          <Card.Description>
-            {'description'}
-          </Card.Description>
+          <Card.Description>{'description'}</Card.Description>
         </Card.Content>
-        <Card.Content extra>
-          {'extra'}
-        </Card.Content>
+        <Card.Content extra>{'extra'}</Card.Content>
       </Card>
     );
   } else {

@@ -6,7 +6,9 @@ export default function FounderCard (props) {
 
   if (head) {
     return (
-      <Card>
+      <Card
+        color={accountPair.address === head.toString() ? 'green' : null}
+      >
         <Card.Content>
           <Image
             floated='right'

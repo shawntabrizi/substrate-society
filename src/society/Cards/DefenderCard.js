@@ -9,7 +9,9 @@ export default function DefenderCard (props) {
 
   if (defender) {
     return (
-      <Card>
+      <Card
+        color={accountPair.address === defender.toString() ? 'green' : null}
+      >
         <Card.Content>
           <Image
             floated='right'

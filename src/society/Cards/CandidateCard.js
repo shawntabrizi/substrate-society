@@ -6,11 +6,14 @@ import { useSubstrate } from '../../substrate-lib';
 export default function CandidateCard (props) {
   const { api } = useSubstrate();
 
-  const { accountPair, setStatus } = props;
+  const { accountPair, setStatus, users } = props;
 
-  if (props.users.length !== 0) {
-    return props.users.map(user => (
-      <Card>
+  if (users.length !== 0) {
+    return users.map(user => (
+      <Card
+        key={user}
+        color={accountPair.address === user.toString() ? 'green' : null}
+      >
         <Card.Content>
           <Image
             floated='right'

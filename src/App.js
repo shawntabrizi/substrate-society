@@ -76,7 +76,7 @@ function Main () {
             <SocietyBids accountPair={accountPair} />
           </Grid.Row>
           <Grid.Row stretched>
-            <SocietyCandidates accountPair={accountPair} />
+            <SocietyCandidates accountPair={accountPair} members={members} />
           </Grid.Row>
           <Grid.Row stretched>
             <SocietySuspendedCandidates accountPair={accountPair} />
