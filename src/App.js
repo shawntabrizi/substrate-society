@@ -10,12 +10,17 @@ import BlockNumber from './BlockNumber';
 import Events from './Events';
 import Metadata from './Metadata';
 import NodeInfo from './NodeInfo';
+import SocietyBalance from './society/Balance';
 import SocietyBids from './society/Bids';
 import SocietyCandidates from './society/Candidates';
 import SocietyDefender from './society/Defender';
 import SocietyMembers from './society/Members';
+import SocietyFounder from './society/Founder';
+import SocietyHead from './society/Head';
+import SocietyPot from './society/Pot';
 import SocietySuspendedCandidates from './society/SuspendedCandidates';
 import SocietySuspendedMembers from './society/SuspendedMembers';
+import { formatBalance } from '@polkadot/util';
 
 function Main () {
   const [accountAddress, setAccountAddress] = useState(null);
@@ -43,6 +48,8 @@ function Main () {
 
   const contextRef = createRef();
 
+  formatBalance.setDefaults({ decimals: 12, unit: '' });
+
   return (
     <div ref={contextRef}>
       <Sticky context={contextRef}>
@@ -58,6 +65,12 @@ function Main () {
           </Grid.Row>
           <Grid.Row stretched>
             <h1>Society</h1>
+          </Grid.Row>
+          <Grid.Row stretched>
+            <SocietyPot />
+            <SocietyBalance accountPair={accountPair} />
+            <SocietyFounder accountPair={accountPair} />
+            <SocietyHead accountPair={accountPair} />
           </Grid.Row>
           <Grid.Row stretched>
             <SocietyBids accountPair={accountPair} />

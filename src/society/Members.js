@@ -33,8 +33,6 @@ function Main (props) {
       })
       .catch(console.error);
 
-    console.log(strikes.toString());
-
     return () => unsubscribe && unsubscribe();
   }, [api.query.society, members, strikes]);
 

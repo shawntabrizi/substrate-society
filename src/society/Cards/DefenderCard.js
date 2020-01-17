@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Icon } from 'semantic-ui-react';
+import { Card, Image, Icon, Popup } from 'semantic-ui-react';
 import { TxButton } from '../../substrate-lib/components';
 import { useSubstrate } from '../../substrate-lib';
 
@@ -21,11 +21,30 @@ export default function DefenderCard (props) {
           <Card.Description>
             {Object.keys(votes).map(voter => {
               if (votes[voter].toString() === '0x02') {
-                return (<Icon circular color='green' name='checkmark' />);
+                return (
+                  <Popup
+                    key={voter}
+                    content={voter}
+                    header={'Approved'}
+                    trigger={<Icon circular color='green' name='checkmark' />}
+                  />
+                );
               } else if (votes[voter].toString() === '0x01') {
-                return (<Icon circular color='red' name='cancel' />);
+                return (
+                  <Popup
+                    key={voter}
+                    content={voter}
+                    header={'Rejected'}
+                    trigger={<Icon circular color='red' name='cancel' />}
+                  />);
               } else {
-                return (<Icon circular color='grey' name='question' />);
+                return (
+                  <Popup
+                    key={voter}
+                    content={voter}
+                    header={'Not Voted'}
+                    trigger={<Icon circular color='grey' name='question' />}
+                  />);
               }
             })}
           </Card.Description>
