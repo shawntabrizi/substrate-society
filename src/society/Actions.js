@@ -19,10 +19,10 @@ function Main (props) {
 
   const { value, tip, who } = formState;
 
-  return (
-    <Grid.Column>
-      <h2>Actions</h2>
-      {accountPair && members.includes(accountPair.address) ? (
+  if (accountPair && members.includes(accountPair.address)) {
+    return (
+      <Grid.Column>
+        <h2>Vouch for Others</h2>
         <Form>
           <Input
             onChange={onChange}
@@ -56,7 +56,13 @@ function Main (props) {
             }}
           />
         </Form>
-      ) : (
+        {status}
+      </Grid.Column>
+    );
+  } else {
+    return (
+      <Grid.Column>
+        <h2>Join the Society</h2>
         <Form>
           <Input
             onChange={onChange}
@@ -76,10 +82,10 @@ function Main (props) {
             }}
           />
         </Form>
-      )}
-      {status}
-    </Grid.Column>
-  );
+        {status}
+      </Grid.Column>
+    );
+  }
 }
 
 export default function Bids (props) {
