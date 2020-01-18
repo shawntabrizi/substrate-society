@@ -21,7 +21,7 @@ export default function SuspendedMemberCard (props) {
             src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
           />
           <Card.Header>{user}</Card.Header>
-          <Card.Meta>Friends of Elliot</Card.Meta>
+          <Card.Meta>Suspended Member</Card.Meta>
           <Card.Description>
             Steve wants to add you to the group <strong>best friends</strong>
           </Card.Description>

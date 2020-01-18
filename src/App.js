@@ -10,6 +10,7 @@ import BlockNumber from './BlockNumber';
 import Events from './Events';
 import Metadata from './Metadata';
 import NodeInfo from './NodeInfo';
+import SocietyActions from './society/Actions';
 import SocietyBalance from './society/Balance';
 import SocietyBids from './society/Bids';
 import SocietyCandidates from './society/Candidates';
@@ -71,6 +72,9 @@ function Main () {
             <SocietyBalance accountPair={accountPair} />
             <SocietyFounder accountPair={accountPair} />
             <SocietyHead accountPair={accountPair} />
+          </Grid.Row>
+          <Grid.Row stretched>
+            <SocietyActions accountPair={accountPair} members={members} />
           </Grid.Row>
           <Grid.Row stretched>
             <SocietyBids accountPair={accountPair} />

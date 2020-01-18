@@ -19,7 +19,7 @@ export default function DefenderCard (props) {
             src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
           />
           <Card.Header>{defender.toString()}</Card.Header>
-          <Card.Meta>Friends of Elliot</Card.Meta>
+          <Card.Meta>Defender</Card.Meta>
           <Card.Description>
             {Object.keys(votes).map(voter => {
               if (votes[voter].toString() === '0x02') {
