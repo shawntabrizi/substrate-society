@@ -24,45 +24,48 @@ function Main (props) {
     return () => unsubscribe && unsubscribe();
   }, [api.query.society]);
 
-  //   useEffect(() => {
-  //     const unsubscribe = null;
+  useEffect(() => {
+    var unsubscribe = null;
 
-  //     var promises = [];
+    var promises = [];
 
-  //     for (var candidate of candidates) {
-  //       for (var member of members) {
-  //         promises.push(candidate);
-  //         promises.push(member);
-  //         promises.push(api.query.society.votes(candidate, member));
-  //       }
-  //     }
+    for (var candidate of candidates) {
+      for (var member of members) {
+        promises.push([api.query.society.votes, [candidate.who, member]]);
+      }
+    }
 
-  //     console.log('Promises', promises);
+    api
+      .queryMulti(promises, results => {
+        var votes = [];
+        let count = 0;
+        for (var candidate of candidates) {
+          for (var member of members) {
+            votes.push({
+              candidate: candidate.who,
+              member: member,
+              vote: results[count]
+            });
+            count += 1;
+          }
+        }
+        setVotes(votes);
+      })
+      .then(u => {
+        unsubscribe = u;
+      })
+      .catch(console.error);
 
-  // Promise.all(promises).then(results => {
-  //   const votes = [];
-
-  //   for (var i = 0; i < results.length; i += 3) {
-  //     votes.push({
-  //       candidate: results[i],
-  //       member: results[i + 1],
-  //       vote: results[i + 2]
-  //     });
-  //   }
-
-  //   setVotes(votes);
-  // });
-
-  //     return () => unsubscribe && unsubscribe();
-  //   }, [api.query.society, candidates, members]);
+    return () => unsubscribe && unsubscribe();
+  }, [api, api.query.society, candidates, members]);
 
   return (
     <Grid.Column>
       <h2>Candidates</h2>
-      {JSON.stringify(votes)}
       <Card.Group>
         <CandidateCard
           users={candidates}
+          votes={votes}
           accountPair={accountPair}
           setStatus={setStatus}
         />
