@@ -46,6 +46,7 @@ export default function BlockNumber (props) {
               tx: api.tx.balances.transfer
             }}
           />
+		  <br />
           {status}
         </Card.Content>
       </Card>

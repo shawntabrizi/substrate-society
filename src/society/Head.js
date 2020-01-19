@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Card } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
 
@@ -24,12 +24,10 @@ export default function Founder (props) {
 
   return (
     <Grid.Column>
-      <Card.Group>
-        <HeadCard
-          head={head}
-          accountPair={accountPair}
-        />
-      </Card.Group>
+      <HeadCard
+        head={head}
+        accountPair={accountPair}
+      />
     </Grid.Column>
   );
 }
