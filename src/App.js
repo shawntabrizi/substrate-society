@@ -26,6 +26,8 @@ import { formatBalance } from '@polkadot/util';
 function Main () {
   const [accountAddress, setAccountAddress] = useState(null);
   const { apiState, keyring, keyringState } = useSubstrate();
+  const [bids, setBids] = useState([]);
+  const [candidates, setCandidates] = useState([]);
   const [members, setMembers] = useState([]);
   const accountPair =
     accountAddress &&
@@ -77,13 +79,26 @@ function Main () {
             <SocietyActions accountPair={accountPair} members={members} />
           </Grid.Row>
           <Grid.Row stretched>
-            <SocietyBids accountPair={accountPair} />
+            <SocietyBids
+              accountPair={accountPair}
+              bids={bids}
+              setBids={setBids}
+            />
           </Grid.Row>
           <Grid.Row stretched>
-            <SocietyCandidates accountPair={accountPair} members={members} />
+            <SocietyCandidates
+              accountPair={accountPair}
+              members={members}
+              candidates={candidates}
+              setCandidates={setCandidates}
+            />
           </Grid.Row>
           <Grid.Row stretched>
-            <SocietySuspendedCandidates accountPair={accountPair} />
+            <SocietySuspendedCandidates
+              accountPair={accountPair}
+              candidates={candidates}
+              members={members}
+            />
           </Grid.Row>
           <Grid.Row stretched>
             <SocietyMembers
@@ -96,7 +111,10 @@ function Main () {
             <SocietyDefender accountPair={accountPair} members={members} />
           </Grid.Row>
           <Grid.Row stretched>
-            <SocietySuspendedMembers accountPair={accountPair} />
+            <SocietySuspendedMembers
+              accountPair={accountPair}
+              members={members}
+            />
           </Grid.Row>
           <Grid.Row stretched>
             <Events />

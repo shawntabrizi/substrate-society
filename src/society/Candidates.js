@@ -7,9 +7,8 @@ import CandidateCard from './Cards/CandidateCard';
 function Main (props) {
   const { api } = useSubstrate();
   const [status, setStatus] = useState(null);
-  const [candidates, setCandidates] = useState([]);
   const [votes, setVotes] = useState([]);
-  const { accountPair, members } = props;
+  const { accountPair, members, candidates, setCandidates } = props;
 
   useEffect(() => {
     let unsubscribe = null;
@@ -22,7 +21,7 @@ function Main (props) {
       .catch(console.error);
 
     return () => unsubscribe && unsubscribe();
-  }, [api.query.society]);
+  }, [api.query.society, setCandidates]);
 
   useEffect(() => {
     var unsubscribe = null;

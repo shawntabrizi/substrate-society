@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Card, Grid } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
@@ -6,8 +6,7 @@ import BidCard from './Cards/BidCard';
 
 function Main (props) {
   const { api } = useSubstrate();
-  const [bids, setBids] = useState([]);
-  const { accountPair } = props;
+  const { accountPair, bids, setBids } = props;
 
   useEffect(() => {
     let unsubscribe = null;
@@ -20,7 +19,7 @@ function Main (props) {
       .catch(console.error);
 
     return () => unsubscribe && unsubscribe();
-  }, [api.query.society]);
+  }, [api.query.society, setBids]);
 
   return (
     <Grid.Column>

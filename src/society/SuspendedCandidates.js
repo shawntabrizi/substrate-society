@@ -9,29 +9,35 @@ function Main (props) {
   const [status, setStatus] = useState(null);
   const [suspendedCandidates, setSuspendedCandidates] = useState([]);
 
-  const { accountPair } = props;
+  const { accountPair, members, candidates } = props;
 
   useEffect(() => {
     const addresses = keyring.getPairs().map(account => account.address);
-    let unsubscribe = null;
 
-    api.query.society.suspendedCandidates
-      .multi(addresses, suspendedStatuses => {
-        const suspended = [];
-        for (const i in suspendedStatuses) {
-          if (suspendedStatuses[i].isSome) {
-            suspended.push(addresses[i]);
-          }
+    var promises = [];
+
+    addresses.forEach(address =>
+      promises.push(api.query.society.suspendedCandidates(address))
+    );
+
+    Promise.all(promises).then(results => {
+      var suspended = [];
+      results.forEach((suspendedStatus, i) => {
+        if (suspendedStatus.isSome) {
+          suspended.push(addresses[i]);
         }
-        setSuspendedCandidates(suspended);
-      })
-      .then(u => {
-        unsubscribe = u;
-      })
-      .catch(console.error);
+      });
 
-    return () => unsubscribe && unsubscribe();
-  }, [api.query.society, keyring]);
+      setSuspendedCandidates(suspended);
+    });
+  }, [
+    api.query.society,
+    api.query.society.suspendedCandidates,
+    keyring,
+    members,
+    candidates,
+    status
+  ]);
 
   return (
     <Grid.Column>
