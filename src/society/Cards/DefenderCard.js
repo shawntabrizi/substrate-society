@@ -4,7 +4,7 @@ import { TxButton } from '../../substrate-lib/components';
 import { useSubstrate } from '../../substrate-lib';
 
 export default function DefenderCard (props) {
-  const { defender, setStatus, accountPair, votes } = props;
+  const { defender, setStatus, accountPair, votes, members } = props;
   const { api } = useSubstrate();
 
   if (defender) {
@@ -38,7 +38,8 @@ export default function DefenderCard (props) {
                     content={voter}
                     header={'Rejected'}
                     trigger={<Icon circular color='red' name='cancel' />}
-                  />);
+                  />
+                );
               } else {
                 return (
                   <Popup
@@ -46,7 +47,8 @@ export default function DefenderCard (props) {
                     content={voter}
                     header={'Not Voted'}
                     trigger={<Icon circular color='grey' name='question' />}
-                  />);
+                  />
+                );
               }
             })}
           </Card.Description>
@@ -64,6 +66,7 @@ export default function DefenderCard (props) {
                 params: [false],
                 tx: api.tx.society.defenderVote
               }}
+              disabled={accountPair && !members.includes(accountPair.address)}
             />
             <TxButton
               accountPair={accountPair}
@@ -76,6 +79,7 @@ export default function DefenderCard (props) {
                 params: [true],
                 tx: api.tx.society.defenderVote
               }}
+              disabled={accountPair && !members.includes(accountPair.address)}
             />
           </div>
         </Card.Content>

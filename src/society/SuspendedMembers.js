@@ -9,7 +9,7 @@ function Main (props) {
   const [status, setStatus] = useState(null);
   const [suspendedMembers, setSuspendedMembers] = useState([]);
 
-  const { accountPair, members } = props;
+  const { accountPair, members, founder } = props;
 
   useEffect(() => {
     const addresses = keyring.getPairs().map(account => account.address);
@@ -30,7 +30,13 @@ function Main (props) {
 
       setSuspendedMembers(suspended);
     });
-  }, [api.query.society, api.query.society.suspendedMembers, keyring, members, status]);
+  }, [
+    api.query.society,
+    api.query.society.suspendedMembers,
+    keyring,
+    members,
+    status
+  ]);
 
   return (
     <Grid.Column>
@@ -40,6 +46,7 @@ function Main (props) {
           users={suspendedMembers}
           accountPair={accountPair}
           setStatus={setStatus}
+          judgementOrigin={founder}
         />
       </Card.Group>
       {status}

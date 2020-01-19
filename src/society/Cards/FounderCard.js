@@ -6,7 +6,7 @@ export default function FounderCard (props) {
 
   if (founder) {
     return (
-      <Card color={accountPair.address === founder.toString() ? 'green' : null}>
+      <Card color={accountPair && accountPair.address === founder.toString() ? 'green' : null}>
         <Card.Content>
           <Image
             floated='right'

@@ -9,7 +9,7 @@ function Main (props) {
   const [status, setStatus] = useState(null);
   const [suspendedCandidates, setSuspendedCandidates] = useState([]);
 
-  const { accountPair, members, candidates } = props;
+  const { accountPair, members, candidates, founder } = props;
 
   useEffect(() => {
     const addresses = keyring.getPairs().map(account => account.address);
@@ -48,6 +48,7 @@ function Main (props) {
           userType={'Suspended'}
           accountPair={accountPair}
           setStatus={setStatus}
+          judgementOrigin={founder}
         />
       </Card.Group>
       {status}

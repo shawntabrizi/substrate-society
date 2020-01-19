@@ -6,7 +6,7 @@ import { useSubstrate } from '../../substrate-lib';
 export default function CandidateCard (props) {
   const { api } = useSubstrate();
 
-  const { accountPair, setStatus, users, votes } = props;
+  const { accountPair, setStatus, users, votes, members } = props;
 
   if (users.length !== 0) {
     return users.map(user => (
@@ -84,6 +84,7 @@ export default function CandidateCard (props) {
                 params: [user.who, false],
                 tx: api.tx.society.vote
               }}
+              disabled={accountPair && !members.includes(accountPair.address)}
             />
             <TxButton
               accountPair={accountPair}
@@ -96,6 +97,7 @@ export default function CandidateCard (props) {
                 params: [user.who, true],
                 tx: api.tx.society.vote
               }}
+              disabled={accountPair && !members.includes(accountPair.address)}
             />
           </div>
         </Card.Content>

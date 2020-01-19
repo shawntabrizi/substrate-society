@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
@@ -7,8 +7,7 @@ import FounderCard from './Cards/FounderCard';
 
 export default function Founder (props) {
   const { api } = useSubstrate();
-  const { accountPair } = props;
-  const [founder, setFounder] = useState(0);
+  const { accountPair, founder, setFounder } = props;
 
   useEffect(() => {
     let unsubscribeAll = null;
@@ -20,7 +19,7 @@ export default function Founder (props) {
     }).catch(console.error);
 
     return () => unsubscribeAll && unsubscribeAll();
-  }, [api.query.society]);
+  }, [api.query.society, setFounder]);
 
   return (
     <Grid.Column>

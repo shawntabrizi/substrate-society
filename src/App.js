@@ -26,6 +26,8 @@ import { formatBalance } from '@polkadot/util';
 function Main () {
   const [accountAddress, setAccountAddress] = useState(null);
   const { apiState, keyring, keyringState } = useSubstrate();
+  const [head, setHead] = useState([]);
+  const [founder, setFounder] = useState([]);
   const [bids, setBids] = useState([]);
   const [candidates, setCandidates] = useState([]);
   const [members, setMembers] = useState([]);
@@ -72,8 +74,16 @@ function Main () {
           <Grid.Row stretched>
             <SocietyPot />
             <SocietyBalance accountPair={accountPair} />
-            <SocietyFounder accountPair={accountPair} />
-            <SocietyHead accountPair={accountPair} />
+            <SocietyFounder
+              accountPair={accountPair}
+              founder={founder}
+              setFounder={setFounder}
+            />
+            <SocietyHead
+              accountPair={accountPair}
+              head={head}
+              setHead={setHead}
+            />
           </Grid.Row>
           <Grid.Row stretched>
             <SocietyActions accountPair={accountPair} members={members} />
@@ -98,6 +108,7 @@ function Main () {
               accountPair={accountPair}
               candidates={candidates}
               members={members}
+              founder={founder}
             />
           </Grid.Row>
           <Grid.Row stretched>
@@ -114,6 +125,7 @@ function Main () {
             <SocietySuspendedMembers
               accountPair={accountPair}
               members={members}
+              founder={founder}
             />
           </Grid.Row>
           <Grid.Row stretched>

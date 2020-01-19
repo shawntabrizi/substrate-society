@@ -6,7 +6,7 @@ import { useSubstrate } from '../../substrate-lib';
 export default function SuspendedMemberCard (props) {
   const { api } = useSubstrate();
 
-  const { accountPair, setStatus, users } = props;
+  const { accountPair, setStatus, users, judgementOrigin } = props;
 
   if (users.length !== 0) {
     return users.map(user => (
@@ -39,6 +39,7 @@ export default function SuspendedMemberCard (props) {
                 params: [user, false],
                 tx: api.tx.society.judgeSuspendedMember
               }}
+              disabled={accountPair && accountPair.address !== judgementOrigin}
             />
             <TxButton
               accountPair={accountPair}
@@ -51,6 +52,7 @@ export default function SuspendedMemberCard (props) {
                 params: [user, true],
                 tx: api.tx.society.judgeSuspendedMember
               }}
+              disabled={accountPair && accountPair.address !== judgementOrigin}
             />
           </div>
         </Card.Content>

@@ -67,6 +67,7 @@ function Main (props) {
           votes={votes}
           accountPair={accountPair}
           setStatus={setStatus}
+          members={members}
         />
       </Card.Group>
       {status}
