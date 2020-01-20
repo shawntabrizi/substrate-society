@@ -31,6 +31,9 @@ function Main () {
   const [bids, setBids] = useState([]);
   const [candidates, setCandidates] = useState([]);
   const [members, setMembers] = useState([]);
+  const [suspendedCandidates, setSuspendedCandidates] = useState([]);
+  const [suspendedMembers, setSuspendedMembers] = useState([]);
+
   const accountPair =
     accountAddress &&
     keyringState === 'READY' &&
@@ -86,7 +89,14 @@ function Main () {
             />
           </Grid.Row>
           <Grid.Row stretched>
-            <SocietyActions accountPair={accountPair} members={members} />
+            <SocietyActions
+              accountPair={accountPair}
+              members={members}
+              candidates={candidates}
+              suspendedCandidates={suspendedCandidates}
+              suspendedMembers={suspendedMembers}
+              bids={bids}
+            />
           </Grid.Row>
           <Grid.Row stretched>
             <SocietyBids
@@ -106,8 +116,8 @@ function Main () {
           <Grid.Row stretched>
             <SocietySuspendedCandidates
               accountPair={accountPair}
-              candidates={candidates}
-              members={members}
+              suspendedCandidates={suspendedCandidates}
+              setSuspendedCandidates={setSuspendedCandidates}
               founder={founder}
             />
           </Grid.Row>
@@ -124,7 +134,8 @@ function Main () {
           <Grid.Row stretched>
             <SocietySuspendedMembers
               accountPair={accountPair}
-              members={members}
+              suspendedMembers={suspendedMembers}
+              setSuspendedMembers={setSuspendedMembers}
               founder={founder}
             />
           </Grid.Row>

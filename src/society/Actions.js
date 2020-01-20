@@ -12,8 +12,16 @@ function Main (props) {
     tip: '',
     who: ''
   });
-  const { accountPair, members } = props;
+  const {
+    accountPair,
+    members,
+    bids,
+    candidates,
+    suspendedMembers,
+    suspendedCandidates
+  } = props;
 
+  console.log(bids);
   const onChange = (_, data) =>
     setFormState(formState => ({ ...formState, [data.state]: data.value }));
 
@@ -22,7 +30,8 @@ function Main (props) {
   if (accountPair && members.includes(accountPair.address)) {
     return (
       <Grid.Column>
-        <h2>Vouch for Others</h2>
+        <h2>You are a Member of the Society</h2>
+        <h3>Vouch for Others</h3>
         <Form>
           <Input
             onChange={onChange}
@@ -59,10 +68,46 @@ function Main (props) {
         {status}
       </Grid.Column>
     );
+  } else if (
+    accountPair &&
+    bids.some(bid => bid.who.toString() === accountPair.address)
+  ) {
+    return (
+      <Grid.Column>
+        <h2>You are a Bid</h2>
+        <h3>Wait for your bid to be accepted or unbid.</h3>
+        <Form>
+          <TxButton
+            accountPair={accountPair}
+            label='Unbid'
+            setStatus={setStatus}
+            type='TRANSACTION'
+            attrs={{
+              params: [],
+              tx: api.tx.society.unbid
+            }}
+          />
+        </Form>
+        {status}
+      </Grid.Column>
+    );
+  } else if (
+    accountPair &&
+    candidates.some(
+      candidate => candidate.who.toString() === accountPair.address
+    )
+  ) {
+    return (
+      <Grid.Column>
+        <h2>You are a Candidate</h2>
+        <h3>Ask members to vote for you!</h3>
+      </Grid.Column>
+    );
   } else {
     return (
       <Grid.Column>
         <h2>Join the Society</h2>
+        <h3>Make a Bid</h3>
         <Form>
           <Input
             onChange={onChange}

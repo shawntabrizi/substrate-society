@@ -12,7 +12,7 @@ export default function CandidateCard (props) {
     return users.map(user => (
       <Card
         key={user}
-        color={accountPair.address === user.toString() ? 'green' : null}
+        color={accountPair.address === user.who.toString() ? 'green' : null}
       >
         <Card.Content>
           <Image

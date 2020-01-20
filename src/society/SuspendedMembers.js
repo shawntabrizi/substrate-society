@@ -7,36 +7,28 @@ import SuspendedMemberCard from './Cards/SuspendedMemberCard';
 function Main (props) {
   const { api, keyring } = useSubstrate();
   const [status, setStatus] = useState(null);
-  const [suspendedMembers, setSuspendedMembers] = useState([]);
 
-  const { accountPair, members, founder } = props;
+  const { accountPair, founder, suspendedMembers, setSuspendedMembers } = props;
 
   useEffect(() => {
     const addresses = keyring.getPairs().map(account => account.address);
-
-    var promises = [];
-
-    addresses.forEach(address =>
-      promises.push(api.query.society.suspendedMembers(address))
-    );
-
-    Promise.all(promises).then(results => {
-      var suspended = [];
-      results.forEach((suspendedStatus, i) => {
-        if (suspendedStatus.isTrue) {
-          suspended.push(addresses[i]);
+    let unsubscribe = null;
+    api.query.society.suspendedMembers
+      .multi(addresses, suspendedStatuses => {
+        const suspended = [];
+        for (const i in suspendedStatuses) {
+          if (suspendedStatuses[i].isTrue) {
+            suspended.push(addresses[i]);
+          }
         }
-      });
-
-      setSuspendedMembers(suspended);
-    });
-  }, [
-    api.query.society,
-    api.query.society.suspendedMembers,
-    keyring,
-    members,
-    status
-  ]);
+        setSuspendedMembers(suspended);
+      })
+      .then(u => {
+        unsubscribe = u;
+      })
+      .catch(console.error);
+    return () => unsubscribe && unsubscribe();
+  }, [api.query.society.suspendedMembers, keyring, setSuspendedMembers]);
 
   return (
     <Grid.Column>
