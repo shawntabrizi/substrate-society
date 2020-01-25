@@ -3,10 +3,13 @@ import { Card, Grid } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
 import BidCard from './Cards/BidCard';
+import PeriodCard from './Cards/PeriodCard';
 
 function Main (props) {
   const { api } = useSubstrate();
-  const { accountPair, bids, setBids } = props;
+  const { accountPair, bids, setBids, blockNumber } = props;
+
+  const rotationPeriod = api.consts.society.rotationPeriod.toNumber();
 
   useEffect(() => {
     let unsubscribe = null;
@@ -25,6 +28,12 @@ function Main (props) {
     <Grid.Column>
       <h2>Bids</h2>
       <Card.Group>
+        <PeriodCard
+          enabled={bids.length > 0}
+          period={rotationPeriod}
+          blockNumber={blockNumber}
+          name={'Bid rotation'}
+        />
         <BidCard users={bids} userType={'Bid'} accountPair={accountPair} />
       </Card.Group>
     </Grid.Column>

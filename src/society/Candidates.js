@@ -3,12 +3,15 @@ import { Card, Grid } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
 import CandidateCard from './Cards/CandidateCard';
+import PeriodCard from './Cards/PeriodCard';
 
 function Main (props) {
   const { api } = useSubstrate();
   const [status, setStatus] = useState(null);
   const [votes, setVotes] = useState([]);
-  const { accountPair, members, candidates, setCandidates } = props;
+  const { accountPair, members, candidates, setCandidates, blockNumber } = props;
+
+  const rotationPeriod = api.consts.society.rotationPeriod.toNumber();
 
   useEffect(() => {
     let unsubscribe = null;
@@ -62,6 +65,12 @@ function Main (props) {
     <Grid.Column>
       <h2>Candidates</h2>
       <Card.Group>
+        <PeriodCard
+          enabled={candidates.length > 0}
+          period={rotationPeriod}
+          blockNumber={blockNumber}
+          name={'Candidate rotation'}
+        />
         <CandidateCard
           users={candidates}
           votes={votes}

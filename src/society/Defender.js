@@ -3,6 +3,7 @@ import { Card, Grid } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
 import DefenderCard from './Cards/DefenderCard';
+import PeriodCard from './Cards/PeriodCard';
 
 function Main (props) {
   const { api } = useSubstrate();
@@ -10,7 +11,9 @@ function Main (props) {
   const [defender, setDefender] = useState('');
   const [votes, setVotes] = useState([]);
 
-  const { accountPair, members } = props;
+  const { accountPair, members, blockNumber } = props;
+
+  const challengePeriod = api.consts.society.challengePeriod.toNumber();
 
   useEffect(() => {
     let unsubscribe = null;
@@ -51,6 +54,12 @@ function Main (props) {
     <Grid.Column>
       <h2>Defender</h2>
       <Card.Group>
+        <PeriodCard
+          enabled
+          period={challengePeriod}
+          blockNumber={blockNumber}
+          name={'Challenge period'}
+        />
         <DefenderCard
           defender={defender}
           votes={votes}

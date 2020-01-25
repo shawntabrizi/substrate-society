@@ -33,6 +33,8 @@ function Main () {
   const [members, setMembers] = useState([]);
   const [suspendedCandidates, setSuspendedCandidates] = useState([]);
   const [suspendedMembers, setSuspendedMembers] = useState([]);
+  const [blockNumber, setBlockNumber] = useState(0);
+  const [finalizedBlockNumber, setfinalizedBlockNumber] = useState(0);
 
   const accountPair =
     accountAddress &&
@@ -68,8 +70,15 @@ function Main () {
           <Grid.Row stretched>
             <NodeInfo />
             <Metadata />
-            <BlockNumber />
-            <BlockNumber finalized />
+            <BlockNumber
+              blockNumber={blockNumber}
+              setBlockNumber={setBlockNumber}
+            />
+            <BlockNumber
+              blockNumber={finalizedBlockNumber}
+              setBlockNumber={setfinalizedBlockNumber}
+              finalized
+            />
           </Grid.Row>
           <Grid.Row stretched>
             <h1>Society</h1>
@@ -103,6 +112,7 @@ function Main () {
               accountPair={accountPair}
               bids={bids}
               setBids={setBids}
+              blockNumber={blockNumber}
             />
           </Grid.Row>
           <Grid.Row stretched>
@@ -111,6 +121,7 @@ function Main () {
               members={members}
               candidates={candidates}
               setCandidates={setCandidates}
+              blockNumber={blockNumber}
             />
           </Grid.Row>
           <Grid.Row stretched>
@@ -129,7 +140,11 @@ function Main () {
             />
           </Grid.Row>
           <Grid.Row stretched>
-            <SocietyDefender accountPair={accountPair} members={members} />
+            <SocietyDefender
+              accountPair={accountPair}
+              members={members}
+              blockNumber={blockNumber}
+            />
           </Grid.Row>
           <Grid.Row stretched>
             <SocietySuspendedMembers

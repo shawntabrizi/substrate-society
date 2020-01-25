@@ -5,8 +5,7 @@ import { useSubstrate } from './substrate-lib';
 
 export default function BlockNumber (props) {
   const { api } = useSubstrate();
-  const { finalized } = props;
-  const [blockNumber, setBlockNumber] = useState(0);
+  const { finalized, blockNumber, setBlockNumber } = props;
   const [blockNumberTimer, setBlockNumberTimer] = useState(0);
 
   const bestNumber = finalized
@@ -19,12 +18,14 @@ export default function BlockNumber (props) {
     bestNumber(number => {
       setBlockNumber(number.toNumber());
       setBlockNumberTimer(0);
-    }).then(unsub => {
-      unsubscribeAll = unsub;
-    }).catch(console.error);
+    })
+      .then(unsub => {
+        unsubscribeAll = unsub;
+      })
+      .catch(console.error);
 
     return () => unsubscribeAll && unsubscribeAll();
-  }, [bestNumber]);
+  }, [bestNumber, setBlockNumber]);
 
   const timer = () => {
     setBlockNumberTimer(time => time + 1);
