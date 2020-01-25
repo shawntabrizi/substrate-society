@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Statistic, Grid, Card } from 'semantic-ui-react';
+import { Statistic, Grid, Card, Button } from 'semantic-ui-react';
 import { stringToU8a, formatBalance } from '@polkadot/util';
+import { encodeAddress } from '@polkadot/util-crypto';
 
 import { useSubstrate } from '../substrate-lib';
 import { TxButton } from '../substrate-lib/components';
@@ -45,6 +46,12 @@ export default function BlockNumber (props) {
               params: [TREASURY_ACCOUNT, '1000000000000000'],
               tx: api.tx.balances.transfer
             }}
+          />
+          <Button
+            secondary
+            content="View Account"
+            target="_blank"
+            href={'https://polkascan.io/pre/kusama-cc3/account/' + encodeAddress(TREASURY_ACCOUNT)}
           />
           <br />
           {status}

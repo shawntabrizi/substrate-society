@@ -19,6 +19,7 @@ import SocietyMembers from './society/Members';
 import SocietyFounder from './society/Founder';
 import SocietyHead from './society/Head';
 import SocietyPot from './society/Pot';
+import SocietyRules from './society/Rules';
 import SocietySuspendedCandidates from './society/SuspendedCandidates';
 import SocietySuspendedMembers from './society/SuspendedMembers';
 import { formatBalance } from '@polkadot/util';
@@ -82,6 +83,9 @@ function Main () {
           </Grid.Row>
           <Grid.Row stretched>
             <h1>Society</h1>
+          </Grid.Row>
+          <Grid.Row stretched>
+            <SocietyRules />
           </Grid.Row>
           <Grid.Row stretched>
             <SocietyPot />

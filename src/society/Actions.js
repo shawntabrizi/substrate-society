@@ -21,7 +21,6 @@ function Main (props) {
     suspendedCandidates
   } = props;
 
-  console.log(bids);
   const onChange = (_, data) =>
     setFormState(formState => ({ ...formState, [data.state]: data.value }));
 
