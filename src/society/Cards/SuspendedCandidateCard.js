@@ -18,9 +18,9 @@ export default function SuspendedCandidateCard (props) {
             src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
           />
           <Card.Header>{user.toString()}</Card.Header>
-          <Card.Meta>Friends of Elliot</Card.Meta>
+          <Card.Meta>Suspended Candidate</Card.Meta>
           <Card.Description>
-          Steve wants to add you to the group <strong>best friends</strong>
+          Contact the founder to be judged.
           </Card.Description>
         </Card.Content>
         <Card.Content extra>

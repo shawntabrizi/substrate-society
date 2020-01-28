@@ -23,7 +23,7 @@ export default function SuspendedMemberCard (props) {
           <Card.Header>{user}</Card.Header>
           <Card.Meta>Suspended Member</Card.Meta>
           <Card.Description>
-            Steve wants to add you to the group <strong>best friends</strong>
+            Contact the founder to be judged.
           </Card.Description>
         </Card.Content>
         <Card.Content extra>

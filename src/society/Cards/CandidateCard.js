@@ -21,7 +21,7 @@ export default function CandidateCard (props) {
             src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
           />
           <Card.Header>{user.who.toString()}</Card.Header>
-          <Card.Meta>Friends of Elliot</Card.Meta>
+          <Card.Meta>Candidate</Card.Meta>
           <Card.Description>
             {user.kind.toString()}
             <br />

@@ -1,3 +1,4 @@
 {
-  "PROVIDER_SOCKET": "wss://kusama-rpc.polkadot.io"
+  "PROVIDER_SOCKET": "wss://kusama-rpc.polkadot.io",
+  "DEVELOPMENT_KEYRING": true
 }

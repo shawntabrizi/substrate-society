@@ -32,9 +32,8 @@ export default function NodeInfo (props) {
             <span>{nodeInfo.chain}</span>
           </Card.Meta>
           <Card.Description>
-            Built using the{' '}
-            <a href='https://github.com/substrate-developer-hub/substrate-front-end-template'>
-              Substrate Front End Template
+            <a href='https://github.com/shawntabrizi/substrate-society'>
+              shawntabrizi/substrate-society
             </a>
           </Card.Description>
         </Card.Content>
