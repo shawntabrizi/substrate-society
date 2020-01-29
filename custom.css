@@ -2,3 +2,8 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+.ui.card .meta, .ui.cards > .card .meta {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
