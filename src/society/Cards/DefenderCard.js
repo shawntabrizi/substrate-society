@@ -1,10 +1,18 @@
 import React from 'react';
-import { Card, Image, Icon, Popup } from 'semantic-ui-react';
+import { Card, Image, Icon, Popup, Modal } from 'semantic-ui-react';
 import { TxButton } from '../../substrate-lib/components';
 import { useSubstrate } from '../../substrate-lib';
 
 export default function DefenderCard (props) {
-  const { defender, setStatus, accountPair, votes, members } = props;
+  const {
+    defender,
+    setStatus,
+    accountPair,
+    votes,
+    members,
+    indicies,
+    proofs
+  } = props;
   const { api } = useSubstrate();
 
   if (defender) {
@@ -13,13 +21,38 @@ export default function DefenderCard (props) {
         color={accountPair.address === defender.toString() ? 'green' : null}
       >
         <Card.Content>
-          <Image
-            floated='right'
-            size='mini'
-            src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
-          />
-          <Card.Header>{defender.toString()}</Card.Header>
-          <Card.Meta>Defender</Card.Meta>
+          <Modal
+            trigger={
+              <Image
+                floated='right'
+                size='mini'
+                src={
+                  proofs && proofs[defender]
+                    ? proofs[defender].image
+                    : 'https://i.imgur.com/Ip7AguC.png'
+                }
+              />
+            }
+          >
+            <Modal.Content image>
+              <Image
+                src={
+                  proofs && proofs[defender]
+                    ? proofs[defender].image
+                    : 'https://i.imgur.com/Ip7AguC.png'
+                }
+              />
+              <Modal.Description></Modal.Description>
+            </Modal.Content>
+          </Modal>
+          <Card.Header>
+            {indicies[defender]
+              ? indicies[defender].toString()
+              : defender.toString()}
+          </Card.Header>
+          <Card.Meta>
+            {indicies[defender] ? defender.toString() : 'Defender'}
+          </Card.Meta>
           <Card.Description>
             {Object.keys(votes).map(voter => {
               if (votes[voter].toString() === '0x02') {

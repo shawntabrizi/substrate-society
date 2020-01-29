@@ -7,7 +7,7 @@ import PeriodCard from './Cards/PeriodCard';
 
 function Main (props) {
   const { api } = useSubstrate();
-  const { accountPair, bids, setBids, blockNumber } = props;
+  const { accountPair, bids, setBids, blockNumber, indicies, proofs } = props;
 
   const rotationPeriod = api.consts.society.rotationPeriod.toNumber();
 
@@ -34,7 +34,13 @@ function Main (props) {
           blockNumber={blockNumber}
           name={'Bid rotation'}
         />
-        <BidCard users={bids} userType={'Bid'} accountPair={accountPair} />
+        <BidCard
+          users={bids}
+          userType={'Bid'}
+          accountPair={accountPair}
+          indicies={indicies}
+          proofs={proofs}
+        />
       </Card.Group>
     </Grid.Column>
   );

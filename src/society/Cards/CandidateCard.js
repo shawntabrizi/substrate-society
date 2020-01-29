@@ -1,12 +1,12 @@
 import React from 'react';
-import { Card, Image, Popup, Icon } from 'semantic-ui-react';
+import { Card, Image, Popup, Icon, Modal } from 'semantic-ui-react';
 import { TxButton } from '../../substrate-lib/components';
 import { useSubstrate } from '../../substrate-lib';
 
 export default function CandidateCard (props) {
   const { api } = useSubstrate();
 
-  const { accountPair, setStatus, users, votes, members } = props;
+  const { accountPair, setStatus, users, votes, members, indicies, proofs } = props;
 
   if (users.length !== 0) {
     return users.map(user => (
@@ -15,13 +15,38 @@ export default function CandidateCard (props) {
         color={accountPair.address === user.who.toString() ? 'green' : null}
       >
         <Card.Content>
-          <Image
-            floated='right'
-            size='mini'
-            src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
-          />
-          <Card.Header>{user.who.toString()}</Card.Header>
-          <Card.Meta>Candidate</Card.Meta>
+          <Modal
+            trigger={
+              <Image
+                floated='right'
+                size='mini'
+                src={
+                  proofs && proofs[user.who]
+                    ? proofs[user.who].image
+                    : 'https://i.imgur.com/Ip7AguC.png'
+                }
+              />
+            }
+          >
+            <Modal.Content image>
+              <Image
+                src={
+                  proofs && proofs[user.who]
+                    ? proofs[user.who].image
+                    : 'https://i.imgur.com/Ip7AguC.png'
+                }
+              />
+              <Modal.Description></Modal.Description>
+            </Modal.Content>
+          </Modal>
+          <Card.Header>
+            {indicies[user.who]
+              ? indicies[user.who].toString()
+              : user.who.toString()}
+          </Card.Header>
+          <Card.Meta>
+            {indicies[user.who] ? user.who.toString() : 'Candidate'}
+          </Card.Meta>
           <Card.Description>
             {user.kind.toString()}
             <br />

@@ -15,7 +15,7 @@ export default function SuspendedCandidateCard (props) {
           <Image
             floated='right'
             size='mini'
-            src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
+            src='https://i.imgur.com/Ip7AguC.png'
           />
           <Card.Header>{user.toString()}</Card.Header>
           <Card.Meta>Suspended Candidate</Card.Meta>

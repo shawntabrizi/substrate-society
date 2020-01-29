@@ -9,7 +9,7 @@ function Main (props) {
   const { api } = useSubstrate();
   const [status, setStatus] = useState(null);
   const [votes, setVotes] = useState([]);
-  const { accountPair, members, candidates, setCandidates, blockNumber } = props;
+  const { accountPair, members, candidates, setCandidates, blockNumber, indicies, proofs } = props;
 
   const rotationPeriod = api.consts.society.rotationPeriod.toNumber();
 
@@ -77,6 +77,8 @@ function Main (props) {
           accountPair={accountPair}
           setStatus={setStatus}
           members={members}
+          indicies={indicies}
+          proofs={proofs}
         />
       </Card.Group>
       {status}

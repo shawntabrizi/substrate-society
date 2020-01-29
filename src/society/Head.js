@@ -7,7 +7,7 @@ import HeadCard from './Cards/HeadCard';
 
 export default function Founder (props) {
   const { api } = useSubstrate();
-  const { accountPair, head, setHead } = props;
+  const { accountPair, head, setHead, indicies, proofs } = props;
 
   useEffect(() => {
     let unsubscribeAll = null;
@@ -26,6 +26,8 @@ export default function Founder (props) {
       <HeadCard
         head={head}
         accountPair={accountPair}
+        indicies={indicies}
+        proofs={proofs}
       />
     </Grid.Column>
   );
