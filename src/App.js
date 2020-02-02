@@ -10,7 +10,7 @@ import BlockNumber from './BlockNumber';
 import Events from './Events';
 import Metadata from './Metadata';
 import NodeInfo from './NodeInfo';
-import Indicies from './Indicies';
+import Indices from './Indices';
 import SocietyActions from './society/Actions';
 import SocietyBalance from './society/Balance';
 import SocietyBids from './society/Bids';
@@ -39,7 +39,7 @@ function Main () {
   const [suspendedMembers, setSuspendedMembers] = useState([]);
   const [blockNumber, setBlockNumber] = useState(0);
   const [finalizedBlockNumber, setfinalizedBlockNumber] = useState(0);
-  const [indicies, setIndicies] = useState({});
+  const [indices, setIndices] = useState({});
 
   const accountPair =
     accountAddress &&
@@ -98,14 +98,14 @@ function Main () {
               accountPair={accountPair}
               founder={founder}
               setFounder={setFounder}
-              indicies={indicies}
+              indices={indices}
               proofs={proofs}
             />
             <SocietyHead
               accountPair={accountPair}
               head={head}
               setHead={setHead}
-              indicies={indicies}
+              indices={indices}
               proofs={proofs}
             />
           </Grid.Row>
@@ -126,7 +126,7 @@ function Main () {
               bids={bids}
               setBids={setBids}
               blockNumber={blockNumber}
-              indicies={indicies}
+              indices={indices}
               proofs={proofs}
             />
           </Grid.Row>
@@ -137,7 +137,7 @@ function Main () {
               candidates={candidates}
               setCandidates={setCandidates}
               blockNumber={blockNumber}
-              indicies={indicies}
+              indices={indices}
               proofs={proofs}
             />
           </Grid.Row>
@@ -147,7 +147,7 @@ function Main () {
               suspendedCandidates={suspendedCandidates}
               setSuspendedCandidates={setSuspendedCandidates}
               founder={founder}
-              indicies={indicies}
+              indices={indices}
               proofs={proofs}
             />
           </Grid.Row>
@@ -156,7 +156,7 @@ function Main () {
               accountPair={accountPair}
               members={members}
               setMembers={setMembers}
-              indicies={indicies}
+              indices={indices}
               proofs={proofs}
             />
           </Grid.Row>
@@ -165,7 +165,7 @@ function Main () {
               accountPair={accountPair}
               members={members}
               blockNumber={blockNumber}
-              indicies={indicies}
+              indices={indices}
               proofs={proofs}
             />
           </Grid.Row>
@@ -175,7 +175,7 @@ function Main () {
               suspendedMembers={suspendedMembers}
               setSuspendedMembers={setSuspendedMembers}
               founder={founder}
-              indicies={indicies}
+              indices={indices}
               proofs={proofs}
             />
           </Grid.Row>
@@ -184,14 +184,15 @@ function Main () {
           </Grid.Row>
         </Grid>
         <DeveloperConsole />
-        <Indicies
+        <Indices
           users={[
             ...bids.map(b => b.who),
             ...candidates.map(c => c.who),
             ...members
           ]}
-          indicies={indicies}
-          setIndicies={setIndicies}
+          indices={indices}
+          setIndices={setIndices}
+          show
         />
       </Container>
     </div>

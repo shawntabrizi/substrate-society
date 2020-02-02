@@ -6,7 +6,7 @@ import { useSubstrate } from '../../substrate-lib';
 export default function CandidateCard (props) {
   const { api } = useSubstrate();
 
-  const { accountPair, setStatus, users, votes, members, indicies, proofs } = props;
+  const { accountPair, setStatus, users, votes, members, indices, proofs } = props;
 
   if (users.length !== 0) {
     return users.map(user => (
@@ -40,12 +40,12 @@ export default function CandidateCard (props) {
             </Modal.Content>
           </Modal>
           <Card.Header>
-            {indicies[user.who]
-              ? indicies[user.who].toString()
+            {indices[user.who]
+              ? indices[user.who].toString()
               : user.who.toString()}
           </Card.Header>
           <Card.Meta>
-            {indicies[user.who] ? user.who.toString() : 'Candidate'}
+            {indices[user.who] ? user.who.toString() : 'Candidate'}
           </Card.Meta>
           <Card.Description>
             {user.kind.toString()}

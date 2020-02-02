@@ -10,7 +10,7 @@ export default function DefenderCard (props) {
     accountPair,
     votes,
     members,
-    indicies,
+    indices,
     proofs
   } = props;
   const { api } = useSubstrate();
@@ -46,12 +46,12 @@ export default function DefenderCard (props) {
             </Modal.Content>
           </Modal>
           <Card.Header>
-            {indicies[defender]
-              ? indicies[defender].toString()
+            {indices[defender]
+              ? indices[defender].toString()
               : defender.toString()}
           </Card.Header>
           <Card.Meta>
-            {indicies[defender] ? defender.toString() : 'Defender'}
+            {indices[defender] ? defender.toString() : 'Defender'}
           </Card.Meta>
           <Card.Description>
             {Object.keys(votes).map(voter => {

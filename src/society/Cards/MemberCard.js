@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Image, Modal } from 'semantic-ui-react';
 
 export default function MemberCard (props) {
-  const { users, strikes, indicies, proofs } = props;
+  const { users, strikes, indices, proofs } = props;
   if (users.length !== 0) {
     return users.map((user, index) => (
       <Card
@@ -35,9 +35,9 @@ export default function MemberCard (props) {
             </Modal.Content>
           </Modal>
           <Card.Header>
-            {indicies[user] ? indicies[user].toString() : user.toString()}
+            {indices[user] ? indices[user].toString() : user.toString()}
           </Card.Header>
-          <Card.Meta>{indicies[user] ? user.toString() : 'Member'}</Card.Meta>
+          <Card.Meta>{indices[user] ? user.toString() : 'Member'}</Card.Meta>
           <Card.Description>{'Description'}</Card.Description>
         </Card.Content>
         <Card.Content extra>{'Strikes: ' + strikes[index]}</Card.Content>

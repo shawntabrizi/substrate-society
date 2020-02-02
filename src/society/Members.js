@@ -8,7 +8,7 @@ function Main (props) {
   const { api } = useSubstrate();
   const [strikes, setStrikes] = useState([]);
 
-  const { accountPair, members, setMembers, indicies, proofs } = props;
+  const { accountPair, members, setMembers, indices, proofs } = props;
 
   useEffect(() => {
     let unsubscribe = null;
@@ -44,7 +44,7 @@ function Main (props) {
           users={members}
           strikes={strikes}
           accountPair={accountPair}
-          indicies={indicies}
+          indices={indices}
           proofs={proofs}
         />
       </Card.Group>

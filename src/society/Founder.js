@@ -7,7 +7,7 @@ import FounderCard from './Cards/FounderCard';
 
 export default function Founder (props) {
   const { api } = useSubstrate();
-  const { accountPair, founder, setFounder, indicies, proofs } = props;
+  const { accountPair, founder, setFounder, indices, proofs } = props;
 
   useEffect(() => {
     let unsubscribeAll = null;
@@ -26,7 +26,7 @@ export default function Founder (props) {
       <FounderCard
         founder={founder}
         accountPair={accountPair}
-        indicies={indicies}
+        indices={indices}
         proofs={proofs}
       />
     </Grid.Column>

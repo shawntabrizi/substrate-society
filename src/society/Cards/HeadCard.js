@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Image, Modal } from 'semantic-ui-react';
 
 export default function FounderCard (props) {
-  const { head, accountPair, indicies, proofs } = props;
+  const { head, accountPair, indices, proofs } = props;
 
   if (head) {
     return (
@@ -39,9 +39,9 @@ export default function FounderCard (props) {
             </Modal.Content>
           </Modal>
           <Card.Header>
-            {indicies[head] ? indicies[head].toString() : head.toString()}
+            {indices[head] ? indices[head].toString() : head.toString()}
           </Card.Header>
-          <Card.Meta>{indicies[head] ? head.toString() : 'Head'}</Card.Meta>
+          <Card.Meta>{indices[head] ? head.toString() : 'Head'}</Card.Meta>
           <Card.Description>{'description'}</Card.Description>
         </Card.Content>
         <Card.Content extra>{'Head'}</Card.Content>

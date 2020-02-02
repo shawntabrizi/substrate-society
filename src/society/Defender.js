@@ -11,7 +11,7 @@ function Main (props) {
   const [defender, setDefender] = useState('');
   const [votes, setVotes] = useState([]);
 
-  const { accountPair, members, blockNumber, indicies, proofs } = props;
+  const { accountPair, members, blockNumber, indices, proofs } = props;
 
   const challengePeriod = api.consts.society.challengePeriod.toNumber();
 
@@ -66,7 +66,7 @@ function Main (props) {
           accountPair={accountPair}
           setStatus={setStatus}
           members={members}
-          indicies={indicies}
+          indices={indices}
           proofs={proofs}
         />
       </Card.Group>
