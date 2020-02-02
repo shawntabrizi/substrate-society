@@ -192,7 +192,6 @@ function Main () {
           ]}
           indices={indices}
           setIndices={setIndices}
-          show
         />
       </Container>
     </div>
