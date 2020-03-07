@@ -7,3 +7,14 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+body {
+	background-color: black!important;
+	color: white!important;
+	font-family: monospace!important;
+}
+
+h1, h2, h3, h4, h5 {
+	font-weight: lighter!important;
+	font-family: monospace!important;
+}

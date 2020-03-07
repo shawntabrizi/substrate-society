@@ -7,7 +7,6 @@ import PeriodCard from './Cards/PeriodCard';
 
 function Main (props) {
   const { api } = useSubstrate();
-  const [status, setStatus] = useState(null);
   const [defender, setDefender] = useState('');
   const [votes, setVotes] = useState([]);
 
@@ -51,31 +50,18 @@ function Main (props) {
   }, [api.query.society, members]);
 
   return (
-    <Grid.Column>
-      <h2>Defender</h2>
-      <Card.Group>
-        <PeriodCard
-          enabled
-          period={challengePeriod}
-          blockNumber={blockNumber}
-          name={'Challenge period'}
-        />
         <DefenderCard
           defender={defender}
           votes={votes}
           accountPair={accountPair}
-          setStatus={setStatus}
           members={members}
           indices={indices}
           proofs={proofs}
         />
-      </Card.Group>
-      {status}
-    </Grid.Column>
   );
 }
 
-export default function Candidates (props) {
+export default function Defender (props) {
   const { api } = useSubstrate();
   return api.query.society &&
     api.query.society.defender &&

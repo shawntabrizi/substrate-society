@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Statistic, Grid, Card, Button } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import { stringToU8a, formatBalance } from '@polkadot/util';
 import { encodeAddress } from '@polkadot/util-crypto';
 
 import { useSubstrate } from '../substrate-lib';
 import { TxButton } from '../substrate-lib/components';
 
-export default function BlockNumber (props) {
+export default function BlockNumber(props) {
   const { accountPair } = props;
   const { api } = useSubstrate();
   const [pot, setPot] = useState(0);
@@ -31,32 +31,12 @@ export default function BlockNumber (props) {
 
   return (
     <Grid.Column>
-      <Card>
-        <Card.Content textAlign='center'>
-          <Statistic label={'Society Balance'} value={formatBalance(pot)} />
-        </Card.Content>
-        <Card.Content extra>
-          <TxButton
-            accountPair={accountPair}
-            label='Donate'
-            setStatus={setStatus}
-            type='TRANSACTION'
-            primary
-            attrs={{
-              params: [TREASURY_ACCOUNT, '1000000000000000'],
-              tx: api.tx.balances.transfer
-            }}
-          />
-          <Button
-            secondary
-            content="View Account"
-            target="_blank"
-            href={'https://polkascan.io/pre/kusama-cc3/account/' + encodeAddress(TREASURY_ACCOUNT)}
-          />
-          <br />
-          {status}
-        </Card.Content>
-      </Card>
+
+      <a style={{ "color": "inherit" }} target="_blank" href={'https://polkascan.io/pre/kusama/account/' + encodeAddress(TREASURY_ACCOUNT)}>
+        <div>BALANCE</div>
+        <div>{formatBalance(pot)}</div>
+      </a>
     </Grid.Column>
+
   );
 }
