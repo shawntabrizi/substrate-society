@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/substrate-society/static/js/main.705467d2.chunk.js",
-    "main.js.map": "/substrate-society/static/js/main.705467d2.chunk.js.map",
+    "main.js": "/substrate-society/static/js/main.8cf9dc47.chunk.js",
+    "main.js.map": "/substrate-society/static/js/main.8cf9dc47.chunk.js.map",
     "runtime-main.js": "/substrate-society/static/js/runtime-main.902809f9.js",
     "runtime-main.js.map": "/substrate-society/static/js/runtime-main.902809f9.js.map",
     "static/css/2.d9369bf2.chunk.css": "/substrate-society/static/css/2.d9369bf2.chunk.css",
-    "static/js/2.ca61a0ba.chunk.js": "/substrate-society/static/js/2.ca61a0ba.chunk.js",
-    "static/js/2.ca61a0ba.chunk.js.map": "/substrate-society/static/js/2.ca61a0ba.chunk.js.map",
+    "static/js/2.9bc910a9.chunk.js": "/substrate-society/static/js/2.9bc910a9.chunk.js",
+    "static/js/2.9bc910a9.chunk.js.map": "/substrate-society/static/js/2.9bc910a9.chunk.js.map",
     "index.html": "/substrate-society/index.html",
-    "precache-manifest.dfdcc32e22f2e8f761d85f6f0dc7c267.js": "/substrate-society/precache-manifest.dfdcc32e22f2e8f761d85f6f0dc7c267.js",
+    "precache-manifest.1480d28b762c48d4fc4bab421bacd69d.js": "/substrate-society/precache-manifest.1480d28b762c48d4fc4bab421bacd69d.js",
     "service-worker.js": "/substrate-society/service-worker.js",
     "static/css/2.d9369bf2.chunk.css.map": "/substrate-society/static/css/2.d9369bf2.chunk.css.map",
     "static/media/semantic.min.css": "/substrate-society/static/media/outline-icons.ef60a4f6.woff"
@@ -16,7 +16,7 @@
   "entrypoints": [
     "static/js/runtime-main.902809f9.js",
     "static/css/2.d9369bf2.chunk.css",
-    "static/js/2.ca61a0ba.chunk.js",
-    "static/js/main.705467d2.chunk.js"
+    "static/js/2.9bc910a9.chunk.js",
+    "static/js/main.8cf9dc47.chunk.js"
   ]
 }
