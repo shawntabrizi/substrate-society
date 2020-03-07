@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
 import CandidateCard from './Cards/CandidateCard';

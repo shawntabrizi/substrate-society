@@ -5,7 +5,7 @@ import { useSubstrate } from '../substrate-lib';
 
 function Main(props) {
     const { api } = useSubstrate();
-    const { blockNumber} = props;
+    const { blockNumber } = props;
 
     const rotationPeriod = api.consts.society.rotationPeriod.toNumber();
 

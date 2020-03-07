@@ -13,25 +13,25 @@ function Main(props) {
 
     return (
         <Grid.Column>
-                  <Popup
-        hoverable
-        trigger={
-            <div>
-            <div>CHALLENGE</div>
-            <div>{challengePeriod - (blockNumber % challengePeriod)}</div>
-          </div>
-        }
-      >
-        <Popup.Content>
-        <SocietyDefender
-              accountPair={accountPair}
-              members={members}
-              blockNumber={blockNumber}
-              indices={indices}
-              proofs={proofs}
-            />
-        </Popup.Content>
-      </Popup>
+            <Popup
+                hoverable
+                trigger={
+                    <div>
+                        <div>CHALLENGE</div>
+                        <div>{challengePeriod - (blockNumber % challengePeriod)}</div>
+                    </div>
+                }
+            >
+                <Popup.Content>
+                    <SocietyDefender
+                        accountPair={accountPair}
+                        members={members}
+                        blockNumber={blockNumber}
+                        indices={indices}
+                        proofs={proofs}
+                    />
+                </Popup.Content>
+            </Popup>
 
         </Grid.Column>
     );

@@ -7,27 +7,27 @@ import { DeveloperConsole } from './substrate-lib/components';
 
 import AccountSelector from './AccountSelector';
 import BlockNumber from './BlockNumber';
-import Events from './Events';
-import Metadata from './Metadata';
-import NodeInfo from './NodeInfo';
+// import Events from './Events';
+// import Metadata from './Metadata';
+// import NodeInfo from './NodeInfo';
 import Indices from './Indices';
 import SocietyActions from './society/Actions';
 import SocietyBalance from './society/Balance';
 import SocietyBids from './society/Bids';
 import SocietyCandidates from './society/Candidates';
 import SocietyChallenge from './society/Challenge';
-import SocietyDefender from './society/Defender';
+// import SocietyDefender from './society/Defender';
 import SocietyMembers from './society/Members';
 import SocietyFounder from './society/Founder';
 import SocietyHead from './society/Head';
 import SocietyPot from './society/Pot';
 import SocietyRotation from './society/Rotation';
-import SocietyRules from './society/Rules';
+// import SocietyRules from './society/Rules';
 import SocietySuspendedCandidates from './society/SuspendedCandidates';
 import SocietySuspendedMembers from './society/SuspendedMembers';
 import { formatBalance } from '@polkadot/util';
 
-import Break from './ascii/break';
+// import Break from './ascii/break';
 import SocietyBanner from './ascii/society';
 import RulesBanner from './ascii/rules';
 
@@ -88,14 +88,14 @@ function Main() {
               setBlockNumber={setfinalizedBlockNumber}
               finalized
             />
-            <SocietyRotation blockNumber={blockNumber}/>
+            <SocietyRotation blockNumber={blockNumber} />
             <SocietyChallenge
               blockNumber={blockNumber}
               accountPair={accountPair}
               members={members}
               indices={indices}
               proofs={proofs}
-              />
+            />
             <SocietyPot />
             <SocietyBalance accountPair={accountPair} />
             <SocietyFounder

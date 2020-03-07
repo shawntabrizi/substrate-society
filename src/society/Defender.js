@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSubstrate } from '../substrate-lib';
 import DefenderCard from './Cards/DefenderCard';
 
-function Main (props) {
+function Main(props) {
   const { api } = useSubstrate();
   const [defender, setDefender] = useState('');
   const [votes, setVotes] = useState([]);
@@ -46,18 +46,18 @@ function Main (props) {
   }, [api.query.society, members]);
 
   return (
-        <DefenderCard
-          defender={defender}
-          votes={votes}
-          accountPair={accountPair}
-          members={members}
-          indices={indices}
-          proofs={proofs}
-        />
+    <DefenderCard
+      defender={defender}
+      votes={votes}
+      accountPair={accountPair}
+      members={members}
+      indices={indices}
+      proofs={proofs}
+    />
   );
 }
 
-export default function Defender (props) {
+export default function Defender(props) {
   const { api } = useSubstrate();
   return api.query.society &&
     api.query.society.defender &&

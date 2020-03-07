@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Form, Input, Popup } from 'semantic-ui-react';
+import { Form, Input, Popup } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
 import { TxButton } from '../substrate-lib/components';

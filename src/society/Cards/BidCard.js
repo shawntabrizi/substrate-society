@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import { Card, Image, Popup } from 'semantic-ui-react';
 
 export default function BidCard(props) {
   const { accountPair, users, indices, proofs } = props;
