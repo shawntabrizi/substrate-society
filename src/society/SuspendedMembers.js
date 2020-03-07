@@ -4,7 +4,7 @@ import { Grid, Card } from 'semantic-ui-react';
 import { useSubstrate } from '../substrate-lib';
 import SuspendedMemberCard from './Cards/SuspendedMemberCard';
 
-function Main (props) {
+function Main(props) {
   const { api, keyring } = useSubstrate();
   const [status, setStatus] = useState(null);
 
@@ -31,22 +31,25 @@ function Main (props) {
   }, [api.query.society.suspendedMembers, keyring, setSuspendedMembers]);
 
   return (
-    <Grid.Column>
-      <h2>Suspended Members</h2>
+    <div>
+      {suspendedMembers.length > 0 ?
+        <h2>Suspended Members
       <Card.Group>
-        <SuspendedMemberCard
-          users={suspendedMembers}
-          accountPair={accountPair}
-          setStatus={setStatus}
-          judgementOrigin={founder}
-        />
-      </Card.Group>
+            <SuspendedMemberCard
+              users={suspendedMembers}
+              accountPair={accountPair}
+              setStatus={setStatus}
+              judgementOrigin={founder}
+            />
+          </Card.Group>
+        </h2>
+        : ''}
       {status}
-    </Grid.Column>
+    </div>
   );
 }
 
-export default function Suspended (props) {
+export default function Suspended(props) {
   const { api } = useSubstrate();
   return api.query.society && api.query.society.suspendedMembers ? (
     <Main {...props} />

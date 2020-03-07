@@ -15,19 +15,25 @@ import SocietyActions from './society/Actions';
 import SocietyBalance from './society/Balance';
 import SocietyBids from './society/Bids';
 import SocietyCandidates from './society/Candidates';
+import SocietyChallenge from './society/Challenge';
 import SocietyDefender from './society/Defender';
 import SocietyMembers from './society/Members';
 import SocietyFounder from './society/Founder';
 import SocietyHead from './society/Head';
 import SocietyPot from './society/Pot';
+import SocietyRotation from './society/Rotation';
 import SocietyRules from './society/Rules';
 import SocietySuspendedCandidates from './society/SuspendedCandidates';
 import SocietySuspendedMembers from './society/SuspendedMembers';
 import { formatBalance } from '@polkadot/util';
 
+import Break from './ascii/break';
+import SocietyBanner from './ascii/society';
+import RulesBanner from './ascii/rules';
+
 import proofs from './config/proofs.json';
 
-function Main () {
+function Main() {
   const [accountAddress, setAccountAddress] = useState(null);
   const { apiState, keyring, keyringState } = useSubstrate();
   const [head, setHead] = useState([]);
@@ -67,14 +73,12 @@ function Main () {
 
   return (
     <div ref={contextRef}>
-      <Sticky context={contextRef}>
+      <Sticky context={contextRef} hidden>
         <AccountSelector setAccountAddress={setAccountAddress} />
       </Sticky>
       <Container>
         <Grid stackable columns='equal'>
-          <Grid.Row stretched>
-            <NodeInfo />
-            <Metadata />
+          <Grid.Row>
             <BlockNumber
               blockNumber={blockNumber}
               setBlockNumber={setBlockNumber}
@@ -84,14 +88,13 @@ function Main () {
               setBlockNumber={setfinalizedBlockNumber}
               finalized
             />
-          </Grid.Row>
-          <Grid.Row stretched>
-            <h1>Society</h1>
-          </Grid.Row>
-          <Grid.Row stretched>
-            <SocietyRules />
-          </Grid.Row>
-          <Grid.Row stretched>
+            <SocietyRotation blockNumber={blockNumber}/>
+            <SocietyChallenge
+              blockNumber={blockNumber}
+              accountPair={accountPair}
+              members={members}
+              indices={indices}
+              />
             <SocietyPot />
             <SocietyBalance accountPair={accountPair} />
             <SocietyFounder
@@ -109,7 +112,22 @@ function Main () {
               proofs={proofs}
             />
           </Grid.Row>
-          <Grid.Row stretched>
+          <Grid.Row centered>
+            <SocietyBanner />
+          </Grid.Row>
+          <Grid.Row centered>
+            <SocietyMembers
+              accountPair={accountPair}
+              members={members}
+              setMembers={setMembers}
+              indices={indices}
+              proofs={proofs}
+            />
+          </Grid.Row>
+          <Grid.Row centered>
+            <RulesBanner />
+          </Grid.Row>
+          <Grid.Row centered>
             <SocietyActions
               accountPair={accountPair}
               members={members}
@@ -120,7 +138,7 @@ function Main () {
               proofs={proofs}
             />
           </Grid.Row>
-          <Grid.Row stretched>
+          <Grid.Row centered>
             <SocietyBids
               accountPair={accountPair}
               bids={bids}
@@ -130,7 +148,7 @@ function Main () {
               proofs={proofs}
             />
           </Grid.Row>
-          <Grid.Row stretched>
+          <Grid.Row centered>
             <SocietyCandidates
               accountPair={accountPair}
               members={members}
@@ -141,7 +159,7 @@ function Main () {
               proofs={proofs}
             />
           </Grid.Row>
-          <Grid.Row stretched>
+          <Grid.Row centered>
             <SocietySuspendedCandidates
               accountPair={accountPair}
               suspendedCandidates={suspendedCandidates}
@@ -151,25 +169,7 @@ function Main () {
               proofs={proofs}
             />
           </Grid.Row>
-          <Grid.Row stretched>
-            <SocietyMembers
-              accountPair={accountPair}
-              members={members}
-              setMembers={setMembers}
-              indices={indices}
-              proofs={proofs}
-            />
-          </Grid.Row>
-          <Grid.Row stretched>
-            <SocietyDefender
-              accountPair={accountPair}
-              members={members}
-              blockNumber={blockNumber}
-              indices={indices}
-              proofs={proofs}
-            />
-          </Grid.Row>
-          <Grid.Row stretched>
+          <Grid.Row centered>
             <SocietySuspendedMembers
               accountPair={accountPair}
               suspendedMembers={suspendedMembers}
@@ -178,9 +178,6 @@ function Main () {
               indices={indices}
               proofs={proofs}
             />
-          </Grid.Row>
-          <Grid.Row stretched>
-            <Events />
           </Grid.Row>
         </Grid>
         <DeveloperConsole />
@@ -198,7 +195,7 @@ function Main () {
   );
 }
 
-export default function App () {
+export default function App() {
   return (
     <SubstrateContextProvider>
       <Main />

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Grid } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
 import CandidateCard from './Cards/CandidateCard';
-import PeriodCard from './Cards/PeriodCard';
 
-function Main (props) {
+function Main(props) {
   const { api } = useSubstrate();
   const [status, setStatus] = useState(null);
   const [votes, setVotes] = useState([]);
@@ -62,31 +61,26 @@ function Main (props) {
   }, [api, api.query.society, candidates, members]);
 
   return (
-    <Grid.Column>
-      <h2>Candidates</h2>
-      <Card.Group>
-        <PeriodCard
-          enabled={candidates.length > 0}
-          period={rotationPeriod}
-          blockNumber={blockNumber}
-          name={'Candidate rotation'}
-        />
-        <CandidateCard
-          users={candidates}
-          votes={votes}
-          accountPair={accountPair}
-          setStatus={setStatus}
-          members={members}
-          indices={indices}
-          proofs={proofs}
-        />
-      </Card.Group>
+    <div>
+      {candidates.length > 0 ?
+        <h2>Candidates:
+      <CandidateCard
+            users={candidates}
+            votes={votes}
+            accountPair={accountPair}
+            setStatus={setStatus}
+            members={members}
+            indices={indices}
+            proofs={proofs}
+          />
+        </h2>
+        : ''}
       {status}
-    </Grid.Column>
+    </div>
   );
 }
 
-export default function Candidates (props) {
+export default function Candidates(props) {
   const { api } = useSubstrate();
   return api.query.society && api.query.society.bids ? (
     <Main {...props} />

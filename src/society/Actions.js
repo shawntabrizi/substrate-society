@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Grid, Form, Input } from 'semantic-ui-react';
+import { Grid, Form, Input, Popup } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
 import { TxButton } from '../substrate-lib/components';
 
-function Main (props) {
+function Main(props) {
   const { api } = useSubstrate();
   const [status, setStatus] = useState(null);
   const [formState, setFormState] = useState({
@@ -28,7 +28,7 @@ function Main (props) {
 
   if (accountPair && members.includes(accountPair.address)) {
     return (
-      <Grid.Column>
+      <div>
         <h2>You are a Member of the Society</h2>
         <h3>Vouch for Others</h3>
         <Form>
@@ -65,14 +65,14 @@ function Main (props) {
           />
         </Form>
         {status}
-      </Grid.Column>
+      </div>
     );
   } else if (
     accountPair &&
     bids.some(bid => bid.who.toString() === accountPair.address)
   ) {
     return (
-      <Grid.Column>
+      <div>
         <h2>You are a Bid</h2>
         <h3>Wait for your bid to be accepted or unbid.</h3>
         <Form>
@@ -88,7 +88,7 @@ function Main (props) {
           />
         </Form>
         {status}
-      </Grid.Column>
+      </div>
     );
   } else if (
     accountPair &&
@@ -97,42 +97,52 @@ function Main (props) {
     )
   ) {
     return (
-      <Grid.Column>
+      <div>
         <h2>You are a Candidate</h2>
         <h3>Ask members to vote for you!</h3>
-      </Grid.Column>
+      </div>
     );
   } else {
     return (
-      <Grid.Column>
-        <h2>Join the Society</h2>
-        <h3>Make a Bid</h3>
-        <Form>
-          <Input
-            onChange={onChange}
-            placeholder='Bid Amount'
-            state='value'
-            type='text'
-            action
-          />
-          <TxButton
-            accountPair={accountPair}
-            label='Place Bid'
-            setStatus={setStatus}
-            type='TRANSACTION'
-            attrs={{
-              params: [value],
-              tx: api.tx.society.bid
-            }}
-          />
-        </Form>
-        {status}
-      </Grid.Column>
+      <div>
+        <Popup
+          hoverable
+          trigger={
+            <h1>&gt;&gt; Join the Society &lt;&lt;</h1>
+          }
+        >
+          <Popup.Content>
+
+            <h3>Make a Bid</h3>
+            <Form>
+              <Input
+                onChange={onChange}
+                placeholder='Bid Amount'
+                state='value'
+                type='text'
+                action
+              />
+              <TxButton
+                accountPair={accountPair}
+                label='Place Bid'
+                setStatus={setStatus}
+                type='TRANSACTION'
+                attrs={{
+                  params: [value],
+                  tx: api.tx.society.bid
+                }}
+              />
+            </Form>
+            {status}
+
+          </Popup.Content>
+        </Popup>
+      </div>
     );
   }
 }
 
-export default function Bids (props) {
+export default function Bids(props) {
   const { api } = useSubstrate();
   return api.query.society && api.query.society.bids ? (
     <Main {...props} />

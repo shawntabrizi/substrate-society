@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Statistic, Grid, Card } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
 import { formatBalance } from '@polkadot/util';
 
-export default function BlockNumber (props) {
+export default function BlockNumber(props) {
   const { api } = useSubstrate();
   const [pot, setPot] = useState(0);
 
@@ -22,17 +22,9 @@ export default function BlockNumber (props) {
 
   return (
     <Grid.Column>
-      <Card>
-        <Card.Content textAlign='center'>
-          <Statistic
-            label={'Society Pot'}
-            value={formatBalance(pot)}
-          />
-        </Card.Content>
-        <Card.Content extra>
-          {'Extra'}
-        </Card.Content>
-      </Card>
+
+      <div>POT</div>
+      <div>{formatBalance(pot)}</div>
     </Grid.Column>
   );
 }

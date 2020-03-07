@@ -4,7 +4,7 @@ import { Grid, Card } from 'semantic-ui-react';
 import { useSubstrate } from '../substrate-lib';
 import MemberCard from './Cards/MemberCard';
 
-function Main (props) {
+function Main(props) {
   const { api } = useSubstrate();
   const [strikes, setStrikes] = useState([]);
 
@@ -37,9 +37,9 @@ function Main (props) {
   }, [api.query.society, members, strikes]);
 
   return (
-    <Grid.Column>
-      <h2>Members</h2>
-      <Card.Group>
+    <div>
+      <h2>THE MEMBERS</h2>
+      <h3>
         <MemberCard
           users={members}
           strikes={strikes}
@@ -47,12 +47,12 @@ function Main (props) {
           indices={indices}
           proofs={proofs}
         />
-      </Card.Group>
-    </Grid.Column>
+        </h3>
+    </div>
   );
 }
 
-export default function Members (props) {
+export default function Members(props) {
   const { api } = useSubstrate();
   return api.query.society && api.query.society.members ? (
     <Main {...props} />

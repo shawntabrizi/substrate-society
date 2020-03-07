@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Image, Icon, Popup, Modal } from 'semantic-ui-react';
 import { TxButton } from '../../substrate-lib/components';
 import { useSubstrate } from '../../substrate-lib';
@@ -6,7 +6,6 @@ import { useSubstrate } from '../../substrate-lib';
 export default function DefenderCard (props) {
   const {
     defender,
-    setStatus,
     accountPair,
     votes,
     members,
@@ -14,6 +13,7 @@ export default function DefenderCard (props) {
     proofs
   } = props;
   const { api } = useSubstrate();
+  const [status, setStatus] = useState(null);
 
   if (defender) {
     return (
@@ -115,6 +115,7 @@ export default function DefenderCard (props) {
               disabled={accountPair && !members.includes(accountPair.address)}
             />
           </div>
+          {status}
         </Card.Content>
       </Card>
     );
