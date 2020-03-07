@@ -94,6 +94,7 @@ function Main() {
               accountPair={accountPair}
               members={members}
               indices={indices}
+              proofs={proofs}
               />
             <SocietyPot />
             <SocietyBalance accountPair={accountPair} />

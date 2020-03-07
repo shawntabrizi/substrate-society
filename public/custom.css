@@ -12,6 +12,7 @@ body {
 	background-color: black!important;
 	color: white!important;
 	font-family: monospace!important;
+	padding-top: 20px!important;
 }
 
 h1, h2, h3, h4, h5 {

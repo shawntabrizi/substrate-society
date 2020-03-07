@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Grid } from 'semantic-ui-react';
 
 import { useSubstrate } from '../substrate-lib';
 import DefenderCard from './Cards/DefenderCard';
-import PeriodCard from './Cards/PeriodCard';
 
 function Main (props) {
   const { api } = useSubstrate();
   const [defender, setDefender] = useState('');
   const [votes, setVotes] = useState([]);
 
-  const { accountPair, members, blockNumber, indices, proofs } = props;
-
-  const challengePeriod = api.consts.society.challengePeriod.toNumber();
+  const { accountPair, members, indices, proofs } = props;
 
   useEffect(() => {
     let unsubscribe = null;
