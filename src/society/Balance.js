@@ -17,9 +17,9 @@ export default function BlockNumber(props) {
   useEffect(() => {
     let unsubscribeAll = null;
 
-    api.query.balances
-      .freeBalance(TREASURY_ACCOUNT, balance => {
-        setPot(balance.toString());
+    api.query.system
+      .account(TREASURY_ACCOUNT, accountData => {
+        setPot(accountData.data.free.toString());
       })
       .then(unsub => {
         unsubscribeAll = unsub;
@@ -27,7 +27,7 @@ export default function BlockNumber(props) {
       .catch(console.error);
 
     return () => unsubscribeAll && unsubscribeAll();
-  }, [TREASURY_ACCOUNT, api.query.balances]);
+  }, [TREASURY_ACCOUNT, api.query.system.account]);
 
   return (
     <Grid.Column>
